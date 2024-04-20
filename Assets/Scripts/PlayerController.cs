@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float impulseForce  = 170000.0f;
     public float impulseTorque = 3000.0f;
     public float kickForce = 500f;
+    public static bool canControl;
 
     public GameObject hero;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canControl = false;
         // get references to the animation controller of hero
         // character and player's corresponding rigid body
         animController = hero.GetComponent<Animator> ();
@@ -29,49 +31,52 @@ public class PlayerController : MonoBehaviour
     {
         // W/A/S/D input as a combined rotation and movement vector
         Vector3 input = new Vector3(0, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        
-        // allow movement when input detected and not crouching
-        if (input.magnitude > 0.001 && !animController.GetBool ("Crouch"))
+        if (canControl)
         {
-            // rotations are about y axis
-            rigidBody.AddRelativeTorque(new Vector3(0, input.y * impulseTorque * Time.deltaTime, 0));
-            // motion is forward/backward (about z axis)
-            rigidBody.AddRelativeForce(new Vector3(0, 0, input.z * impulseForce * Time.deltaTime));
-
-            animController.SetBool("Walk", true);
-        }
-        else
-        {
-            animController.SetBool("Walk", false);
-
-            // crouching with 'C' key (only when not moving)
-            if (Input.GetKey(KeyCode.C))
-                animController.SetBool("Crouch", true);
-            else
-                animController.SetBool("Crouch", false);
-            if (Input.GetKeyDown(KeyCode.Space))
+            // allow movement when input detected and not crouching
+            if (input.magnitude > 0.001 && !animController.GetBool("Crouch"))
             {
-                int r = Random.Range(0, 3);
-                if (r == 0)
-                    animController.SetTrigger("Kick1");
-                else if (r == 1)
-                    animController.SetTrigger("Kick2");
-                else if(r == 2)
-                    animController.SetTrigger("Kick3");
+                // rotations are about y axis
+                rigidBody.AddRelativeTorque(new Vector3(0, input.y * impulseTorque * Time.deltaTime, 0));
+                // motion is forward/backward (about z axis)
+                rigidBody.AddRelativeForce(new Vector3(0, 0, input.z * impulseForce * Time.deltaTime));
 
-                RaycastHit hit;
-                if (Physics.Raycast(hero.transform.position + Vector3.up / 4, hero.transform.forward, out hit, 3f))
+                animController.SetBool("Walk", true);
+            }
+            else
+            {
+                animController.SetBool("Walk", false);
+
+                // crouching with 'C' key (only when not moving)
+                if (Input.GetKey(KeyCode.C))
+                    animController.SetBool("Crouch", true);
+                else
+                    animController.SetBool("Crouch", false);
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-                    if (rb != null)
+                    int r = Random.Range(0, 3);
+                    if (r == 0)
+                        animController.SetTrigger("Kick1");
+                    else if (r == 1)
+                        animController.SetTrigger("Kick2");
+                    else if (r == 2)
+                        animController.SetTrigger("Kick3");
+
+                    RaycastHit hit;
+                    if (Physics.Raycast(hero.transform.position + Vector3.up / 4, hero.transform.forward, out hit, 3f))
                     {
-                        rb.AddForce((transform.forward+transform.up/2) * kickForce);
+                        Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
+                        if (rb != null)
+                        {
+                            rb.AddForce((transform.forward + transform.up / 2) * kickForce);
+                        }
                     }
+
                 }
 
             }
-            
         }
+        
 
 
     }
