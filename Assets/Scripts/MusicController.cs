@@ -1,45 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    public List<AudioSource> musicSources;
-    public static bool isFight = false;
-    public static bool isSuspense = false;
-    public static bool isDefault = true;
+    public List<AudioSource> musicSources;//0:default,1:fight,2:suspense
+    public static int currentIndex;
 
     void Start()
     {
-        EnableMusic();
-        musicSources[0].Play();
+        currentIndex = 0;
+        PlayMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isDefault)
-        {
-            EnableMusic();
-            musicSources[0].Play();
-        }
-        else if (isFight)
-        {
-            EnableMusic();
-            musicSources[1].Play();
-        }
-        else if (isSuspense)
-        {
-            EnableMusic();
-            musicSources[2].Play();
-        }
+        PlayMusic();
     }
 
-    private void EnableMusic()
+    private void PlayMusic()
     {
         foreach (AudioSource music in musicSources)
         {
             music.Pause();
         }
+        musicSources[currentIndex].Play();
     }
+
 }

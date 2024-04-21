@@ -80,4 +80,20 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Suspense")
+        {
+            MusicController.currentIndex = 1;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Suspense")
+        {
+            MusicController.currentIndex = 0;
+        }
+    }
 }
