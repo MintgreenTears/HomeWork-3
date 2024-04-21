@@ -25,14 +25,16 @@ public class BanditShoot : MonoBehaviour
 
     private void Update()
     {
+        //Be sure to always face the player
         this.transform.LookAt(player.position);
     }
     void ShootAtPlayer()
     {
-
+        //Set the direction vector for the player
         Vector3 directionToPlayer = (player.position + Vector3.up - firePoint).normalized;
         float randomAngle = Random.Range(minAngle, maxAngle);
         Vector3 randomDirection = Quaternion.Euler(0, Random.Range(-randomAngle, randomAngle), 0) * directionToPlayer;
+        //Instantiate the bullet preform
         GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.Euler(90f, 0f, 0f));
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = randomDirection * bulletSpeed;

@@ -17,7 +17,6 @@ public class BulletHit : MonoBehaviour
         if (other.tag =="Player")
         {
             // Player is hit
-            // Provide visual or auditory cues
             audioSource.PlayOneShot(hitSound);
         }
         Destroy(this.gameObject,2f);

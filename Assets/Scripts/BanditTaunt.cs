@@ -15,6 +15,7 @@ public class BanditTaunt : MonoBehaviour
 
     IEnumerator PlayTaunts()
     {
+        //Loop through the while loop
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(10, 30));
