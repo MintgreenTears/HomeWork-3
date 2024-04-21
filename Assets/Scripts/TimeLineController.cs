@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -19,9 +20,14 @@ public class TimeLineController : MonoBehaviour
             {
                 pd.Stop();
                 pd.time = 57.27f;
-                PlayerController.canControl = true;
+                
                 pd.Play();
             }
+        }
+        if(pd.state.ToString().Equals("Paused"))
+        {
+            PlayerController.canControl = true;
+            Destroy(pd.gameObject);
         }
     }
 }
