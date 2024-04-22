@@ -54,6 +54,6 @@ By setting the number and range of particle effects, it is more consistent with 
 To Install the project, follow these steps:
 1. Unzip the "HW3" Assignment
 2. Use Unity hub to open the unziped Assignment file
-3. Click Scenes
+3. Click Western Town
 4. Click Cross-Country Scene
 3. Start game
