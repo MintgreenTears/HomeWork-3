@@ -44,7 +44,7 @@ public class BanditShoot : MonoBehaviour
 
     IEnumerator Wait()
     {
-        Debug.Log("Starting task");
+        //Debug.Log("Starting task");
         yield return new WaitForSeconds(Random.Range(10, 30));
         InvokeRepeating("ShootAtPlayer", 1f, Random.Range(shootingIntervalMin, shootingIntervalMax));
     }

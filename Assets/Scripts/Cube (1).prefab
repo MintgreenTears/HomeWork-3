@@ -124,6 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672926569928947813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aa6a54307756c546b108645d73a66f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 20e9bfdf3e0f991449f1975ce9772a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParticleSystem: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
