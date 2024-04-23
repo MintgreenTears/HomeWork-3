@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Bullet")
+        if (other.tag == "EnemyBullet")
         {
             //  Reduces blood volume by 10 points
             TakeDamage(10f);

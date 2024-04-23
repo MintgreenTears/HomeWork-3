@@ -7,7 +7,9 @@ public class ShootToKill : MonoBehaviour
     // Start is called before the first frame update
     public GameObject bullet;
     private int fire_rate=1;
-    
+    private AudioSource audioSource;
+    public AudioClip shootSound;
+
 
     // Update is called once per frame
     //void OnCollisionEnter()
@@ -15,6 +17,12 @@ public class ShootToKill : MonoBehaviour
     //    Destroy(bullet);
     //    print("Yep");
     //}
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+    }
     void Update()
     {   
         
@@ -23,8 +31,9 @@ public class ShootToKill : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && fire_rate%2==0)
         {
             Instantiate(bullet, transform.position, transform.rotation);
-            
-                
+            audioSource.PlayOneShot(shootSound,0.4f);
+
+
         }
         
     }

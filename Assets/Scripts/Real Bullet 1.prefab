@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Real Bullet 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1672926569928947813, guid: 1c5c0d1c27547164c95c48b236720b60,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
     - target: {fileID: 3538656958814742937, guid: 1c5c0d1c27547164c95c48b236720b60,
         type: 3}
       propertyPath: m_RootOrder
