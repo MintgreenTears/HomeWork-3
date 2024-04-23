@@ -10,11 +10,11 @@ public class ShootToKill : MonoBehaviour
     
 
     // Update is called once per frame
-    void OnCollisionEnter()
-    {
-        Destroy(bullet);
-        print("Yep");
-    }
+    //void OnCollisionEnter()
+    //{
+    //    Destroy(bullet);
+    //    print("Yep");
+    //}
     void Update()
     {   
         

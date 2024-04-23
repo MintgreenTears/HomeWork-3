@@ -4,22 +4,10 @@ using UnityEngine;
 
 public class BulletHit : MonoBehaviour
 {
-    private AudioSource audioSource;
 
-    public AudioClip hitSound;
-    void Start()
+    private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        Destroy(this.gameObject,5f);
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag =="Player")
-        {
-            // Player is hit
-            audioSource.PlayOneShot(hitSound);
-        }
-        Destroy(this.gameObject,2f);
+        Destroy(gameObject,5f);
     }
 
 
